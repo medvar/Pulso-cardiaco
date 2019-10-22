@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EXAMENES</title>
+    <% include partials/header %>
+</head>
+
+<body class="App">
+    <div class="container p-4">
+        <div class="row">
+            <% 
+             pacientes.forEach(function (paciente){ 
+                console.log(idp);                      
+                        if(idp==paciente.id){ %>
+                <div class="col-md-12">
+                    <div class="card border-info mb-3">
+                        <div class="card-header">
+                            Datos Del Paciente
+                        </div>
+                        <div class="card-body row">
+                            <div class="row col-md-12">
+                                <div class="input-group form-inline col-md-6">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Nombre Del Paciente</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="Nombre" readonly value="<%=paciente.Nombre%>">
+                                </div>
+                                <div class="input-group form-inline  col-md-6">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> Apellido Del Paciente</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="Apelldio" readonly value="<%=paciente.Apellido%>">
+                                </div>
+                            </div>
+
+                            <div class="input-group form-inline col-md-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> Edad</div>
+                                </div>
+                                <input type="text" class="form-control" id="Edad" readonly value="<%=paciente.Edad%>">
+                            </div>
+                            <div class="input-group form-inline col-md-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> Sexo</div>
+                                </div>
+                                <input type="text" class="form-control" id="Sexo" readonly value=" <%=paciente.Sexo%>">
+                            </div>
+                            <div class="input-group form-inline col-md-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> Fuma</div>
+                                </div>
+                                <input type="text" class="form-control" id="Fuma" readonly value=" <%=paciente.Fuma%>">
+                            </div>
+                            <div class="input-group form-inline col-md-4">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"> Horas De Ejercicio</div>
+                                </div>
+                                <input type="text" class="form-control" id="HorasEjercicio" readonly value=" <%=paciente.HorasEjercicio%>">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <% } }) %>
+        </div>
+        <div class="card row">
+            <div class="card-header">
+                Datos Del Examen
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="NivelEzfuerzo">Nivel De Esfuerzo</label>
+                        <select class="form-control" name="NivelEzfuerzo" id="NivelEzfuerzo">
+                        <option value="Reposo">Reposo</option>
+                        <option value="Media">Media</option>
+                        <option value="Maxima">Maxima</option>
+                    </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="Posicion">Posicion</label>
+                        <select class="form-control" name="Posicion" id="Posicion">
+                            <option value="Sentado">Sentado</option>
+                            <option value="Parrado">Parrado</option>
+                            <option value="Acostado">Acostado</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Fecha">Fecha</label>
+                        <input type="text" class="form-control" name=Fecha id="Fecha" readonly value="<%= new Date(Date.now()).toLocaleString(); %>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="Nota">Nota</label>
+                        <textarea class="form-control" name=Nota id="Nota" rows='2' placeholder="Nota">
+                        </textarea>
+                    </div>
+                    <input type="button" class="btn btn-success" value="Empezar Examen">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<% include partials/footer %>
+
+</html>

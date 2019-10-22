@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>NUEVO PACIENTE</title>
+    <% include partials/header %>
+</head>
+
+<body class="App">
+
+    <div class="container p-4">
+        <form method="POST" action="/Paciente" class="card">
+            <div class="card-header">
+                Datos Del Paciente
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="txtnombre">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre" maxlength="30" id="txtnombre" placeholder="Ingrese Nombre" autofocus required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtapellido">Apellido</label>
+                        <input type="text" class="form-control" name="Apellido" maxlength="30" id="txtapellido" placeholder="Ingrese Apellido" required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="txtedad">Edad</label>
+                        <input type="number" max="100" min="10" class="form-control" name="Edad" id="txtedad" value="10" placeholder="Ingrese Edad" required>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="">Sexo</label>
+                        <div class="form-inline">
+                            <div class="form-inline"> <input type="radio" class="form-control" value="Masculino" name="Sexo" id="rdMasculino" checked> <label for="rdMasculino">Masculino</label></div>
+                            <div class="form-inline">
+                                <input type="radio" class="ml-1 form-control" name="Sexo" value="Femenino" id="rdFemenino"> <label for="rdFemenino">Femenino</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Fuma</label>
+                        <div class="form-inline">
+                            <div class="form-inline"> <input type="radio" class="form-control" name="Fuma" value="SI" id="rdFumaSi"> <label for="rdFumaSi">SI</label></div>
+                            <div class="form-inline">
+                                <input type="radio" class="ml-1 form-control" name="Fuma" value="NO" id="rdFumaNo" checked> <label for="rdFumaNo">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="txthoasejercicio">Horas de Ejercicio Semanal</label>
+                        <input type="number" max="300" min="0" class="form-control" name="HorasEjercicio" id="txthoasejercicio" value="0" placeholder="Horas De Ejercicio" required>
+                    </div>
+                    <input type="submit" value="Ingresar Paciente" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+<% include partials/footer %>
+
+</html>
