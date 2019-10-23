@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>EXAMENES</title>
+    <title>EXAMEN</title>
     <% include partials/header %>
 </head>
 
@@ -97,9 +97,17 @@
                         <textarea class="form-control" name=Nota id="Nota" rows='2' placeholder="Nota">
                         </textarea>
                     </div>
-                    <input type="button" class="btn btn-success" value="Empezar Examen">
+                    <div class="form-group col-md-3">
+                        <label for="BPM">BPM</label>
+                        <input type="text" class="form-control" name=BPM id="BPM" placeholder="Inicie el examen" readonly value="">
+                    </div>
+                    <input type="button" class="btn btn-info" value="Guardar Datos">
                 </div>
             </div>
+        </div>
+
+        <div class="card row">
+            <% include partials/grafica %>
         </div>
     </div>
 </body>
