@@ -1,8 +1,8 @@
 <div class="row">
     <label for="txtTiempo" class="m-4 mr-0">Tiempo</label>
-    <input type="text" class="ml-0 m-4" id="txtTiempo" value="15">
-    <button class="btn btn-success ml-5 m-4" id="btnNuevo" onclick='enviar("Nuevo");'>Empezar Examen</button>
-    <button class="btn btn-danger m-4" disabled id="btnFin" onclick="enviar('A');">Terminar Examen</button>
+    <input type="number" max="60" min="15" step="15" class="ml-0 m-4" id="txtTiempo" value="15">
+    <input type="button" class="btn btn-success ml-5 m-4" id="btnNuevo" onclick='enviar("Nuevo");' value="Empezar Examen"></input>
+    <input type="button" class="btn btn-danger m-4" disabled id="btnFin" onclick="enviar('A');" value="Terminar Examen"></input>
 </div>
 
 
@@ -13,7 +13,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
     const socket = io();
-
+    var Latidos = 0;
+    var BPMMAXIMA = 0;
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'line',
@@ -34,7 +35,6 @@
     let da = "";
     socket.on('arduino:data', function(dataSerial) {
         if (dataSerial.value == 'N') {
-            console.log("limpiar");
             chart.data.datasets[0].data = [];
             counter = 0;
         } else {
@@ -54,28 +54,67 @@
                 counter++;
                 chart.update();
                 da = "";
+
+                //condiciones
+                if (da < 600 && da > 350)
+                    Latidos++;
+
             }
         }
     });
 
     function enviar(msj) {
         if (msj == 'A') {
-            document.getElementById('btnNuevo').disabled = false;
-            document.getElementById('btnFin').disabled = true;
+            terminarExamen();
         } else {
+            BPMMAXIMA = 220 - document.getElementById('Edad').value;
             document.getElementById('btnNuevo').disabled = true;
             document.getElementById('btnFin').disabled = false;
             let ti = document.getElementById('txtTiempo').value * 1000;
             setTimeout('terminarExamen()', ti);
+            socket.emit('cli', msj);
         }
-
-        socket.emit('cli', msj);
     }
 
     function terminarExamen() {
         socket.emit('cli', 'A');
         document.getElementById('btnNuevo').disabled = false;
         document.getElementById('btnFin').disabled = true;
-
+        let PosibleDiagnostico;
+        let esfuerzo = document.getElementById('NivelEzfuerzo').value;
+        let HorasEjercicio = document.getElementById('HorasEjercicio').value;
+        let ti = document.getElementById('txtTiempo').value;
+        Latidos = Latidos * (60 / ti);
+        document.getElementById('Latidos').value;
+        if (Latidos > 40) {
+            if (esfuerzo == 'Reposo') {
+                if (Latidos < 60 && HorasEjercicio < 21)
+                    PosibleDiagnostico = 'Bradicardia';
+                else if (Latidos <= 100) {
+                    PosibleDiagnostico = 'Normal';
+                } else if (Latidos > 100) {
+                    PosibleDiagnostico = 'Taquicardia'
+                }
+            } else if (esfuerzo == 'Media') {
+                if (Latidos < (BPMMAXIMA * 0.5))
+                    PosibleDiagnostico = 'Bradicardia';
+                else if (Latidos > (BPMMAXIMA * 0.7))
+                    PosibleDiagnostico = 'Taquicardia';
+                else
+                    PosibleDiagnostico = 'Normal';
+            } else {
+                if (Latidos < (BPMMAXIMA * 0.7))
+                    PosibleDiagnostico = 'Bradicardia';
+                else if (Latidos > (BPMMAXIMA))
+                    PosibleDiagnostico = 'Taquicardia';
+                else
+                    PosibleDiagnostico = 'Normal';
+            }
+            document.getElementById('btnGuardar').disabled = false;
+        } else {
+            PosibleDiagnostico = "Datos Erroneos";
+            //  document.getElementById('btnGuardar').disabled = true;
+        }
+        document.getElementById('Diagnostico').value = PosibleDiagnostico;
     }
 </script>

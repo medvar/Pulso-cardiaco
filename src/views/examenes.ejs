@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>EXAMEN</title>
     <% include partials/header %>
+        <title>Examenes</title>
 </head>
+
 
 <body class="App">
     <div class="container p-4">
-
         <div class="row">
             <% 
              pacientes.forEach(function (paciente){                   
@@ -64,59 +64,54 @@
                 </div>
                 <% } }) %>
         </div>
-        <form method="POST" action="/examen">
-            <input type="hidden" name="IdPaciente" value="<%=idp%>">
-            <div class="card row">
-                <div class="card-header">
-                    Datos Del Examen
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="form-group col-md-3">
-                            <label for="NivelEzfuerzo">Nivel De Esfuerzo</label>
-                            <select class="form-control" name="NivelEzfuerzo" id="NivelEzfuerzo">
-                        <option value="Reposo">Reposo</option>
-                        <option value="Media">Media</option>
-                        <option value="Maxima">Maxima</option>
-                    </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="Posicion">Posicion</label>
-                            <select class="form-control" name="Posicion" id="Posicion">
-                            <option value="Sentado">Sentado</option>
-                            <option value="Parrado">Parrado</option>
-                            <option value="Acostado">Acostado</option>
-                        </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="Fecha">Fecha</label>
-                            <input type="text" class="form-control" name=Fecha id="Fecha" readonly value="<%= new Date(Date.now()).toLocaleString(); %>">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="Nota">Nota</label>
-                            <textarea class="form-control" name=Nota id="Nota" rows='2' placeholder="Nota">
-                        </textarea>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="Latidos">Latidos</label>
-                            <input type="text" class="form-control" name=Latidos id="Latidos" placeholder="Inicie el examen" readonly value="">
-                            <div class="form-group">
-                                <label for="Diagnostico">Diagnostico</label>
-                                <input type="text" class="form-control" name=Diagnostico id="Diagnostico" placeholder="Inicie el examen" readonly value="">
-                            </div>
-                        </div>
-                        <input type="submit" id='btnGuardar' class="btn btn-info" value="Guardar Datos">
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div class="card row">
-            <% include partials/grafica %>
-        </div>
-
     </div>
+    <div class="row d-flex justify-content-center mb-5">
+        <div class="card">
+            <table class="table" width="600">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">HORA</th>
+                        <th scope="col">ESFUERZO</th>
+                        <th scope="col">NOTA</th>
+                        <th scope="col">LATIDOS</th>
+                        <th scope="col">DIAGNOSTICO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% let con=0;
+                            examenes.forEach(function (examen){                   
+                                       if(idp==examen.IdPaciente){ %>
+                        <tr>
+                            <th scope="row">
+                                <%=con%>
+                            </th>
+                            <td>
+                                <%=examen.Fecha.substr(0,11)%>
+                            </td>
+                            <td>
+                                <%=examen.Fecha.substr(11,17)%>
+                            </td>
+                            <td>
+                                <%=examen.NivelEzfuerzo%>
+                            </td>
+                            <td>
+                                <%=examen.Nota%>
+                            </td>
+                            <td>@
+                                <%=examen.Latidos%>
+                            </td>
+                            <td>@
+                                <%=examen.Diagnostico%>
+                            </td>
+                        </tr>
+                        <% con++; }}) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 <% include partials/footer %>
 
