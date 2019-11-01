@@ -33,6 +33,7 @@ mySerial.on('data', function(data) {
 
 
 mySerial.on('error', function(data) {
+    console.log("error serial");
     console.log(data.message);
 });
 
