@@ -20,6 +20,8 @@ router.get('/paciente', (req, res) => {
 
 router.get('/examen/:id', (req, res) => {
     let idp = req.params.id;
+    let puert = require('../serial');
+    console.log(puert);
     res.render('examen', {
         pacientes,
         idp
