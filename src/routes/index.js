@@ -7,7 +7,7 @@ let json_pacientes = fs.readFileSync('src/pacientes.json', 'utf-8');
 const pacientes = JSON.parse(json_pacientes);
 let json_examenes = fs.readFileSync('src/examen.json', 'utf-8');
 const examenes = JSON.parse(json_examenes);
-
+let titulo;
 router.get('/', (req, res) => {
     res.render('index', {
         pacientes

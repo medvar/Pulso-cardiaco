@@ -1,118 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<% titulo="lISTA DE EXAMENES" %>
     <% include partials/header %>
-        <title>Examenes</title>
-</head>
 
-
-<body class="App">
-    <div class="container p-4">
-        <div class="row">
-            <% 
+        <div class="container p-4">
+            <div class="row">
+                <% 
              pacientes.forEach(function (paciente){                   
                         if(idp==paciente.id){ %>
-                <div class="col-md-12">
-                    <div class="card border-info mb-3">
-                        <div class="card-header">
-                            Datos Del Paciente
-                        </div>
-                        <div class="card-body row">
-                            <div class="row col-md-12">
-                                <div class="input-group form-inline col-md-6">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Nombre Del Paciente</div>
+                    <div class="col-md-12">
+                        <div class="card border-info mb-3">
+                            <div class="card-header">
+                                Datos Del Paciente
+                            </div>
+                            <div class="card-body row">
+                                <div class="row col-md-12">
+                                    <div class="input-group form-inline col-md-6">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Nombre Del Paciente</div>
+                                        </div>
+                                        <input type="text" class="form-control" id="Nombre" readonly value="<%=paciente.Nombre%>">
                                     </div>
-                                    <input type="text" class="form-control" id="Nombre" readonly value="<%=paciente.Nombre%>">
-                                </div>
-                                <div class="input-group form-inline  col-md-6">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"> Apellido Del Paciente</div>
+                                    <div class="input-group form-inline  col-md-6">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"> Apellido Del Paciente</div>
+                                        </div>
+                                        <input type="text" class="form-control" id="Apelldio" readonly value="<%=paciente.Apellido%>">
                                     </div>
-                                    <input type="text" class="form-control" id="Apelldio" readonly value="<%=paciente.Apellido%>">
                                 </div>
-                            </div>
 
-                            <div class="input-group form-inline col-md-3">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"> Edad</div>
+                                <div class="input-group form-inline col-md-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> Edad</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="Edad" readonly value="<%=paciente.Edad%>">
                                 </div>
-                                <input type="text" class="form-control" id="Edad" readonly value="<%=paciente.Edad%>">
-                            </div>
-                            <div class="input-group form-inline col-md-3">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"> Sexo</div>
+                                <div class="input-group form-inline col-md-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> Sexo</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="Sexo" readonly value=" <%=paciente.Sexo%>">
                                 </div>
-                                <input type="text" class="form-control" id="Sexo" readonly value=" <%=paciente.Sexo%>">
-                            </div>
-                            <div class="input-group form-inline col-md-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"> Fuma</div>
+                                <div class="input-group form-inline col-md-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> Fuma</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="Fuma" readonly value=" <%=paciente.Fuma%>">
                                 </div>
-                                <input type="text" class="form-control" id="Fuma" readonly value=" <%=paciente.Fuma%>">
-                            </div>
-                            <div class="input-group form-inline col-md-4">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"> Horas De Ejercicio</div>
+                                <div class="input-group form-inline col-md-4">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> Horas De Ejercicio</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="HorasEjercicio" readonly value=" <%=paciente.HorasEjercicio%>">
                                 </div>
-                                <input type="text" class="form-control" id="HorasEjercicio" readonly value=" <%=paciente.HorasEjercicio%>">
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <% } }) %>
+                    <% } }) %>
+            </div>
         </div>
-    </div>
-    <div class="row d-flex justify-content-center mb-5">
-        <div class="card">
-            <table class="table" width="600">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">FECHA</th>
-                        <th scope="col">HORA</th>
-                        <th scope="col">ESFUERZO</th>
-                        <th scope="col">NOTA</th>
-                        <th scope="col">LATIDOS</th>
-                        <th scope="col">DIAGNOSTICO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% let con=0;
+        <div class="row d-flex justify-content-center mb-5">
+            <div class="card">
+                <table class="table" width="600">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">FECHA</th>
+                            <th scope="col">HORA</th>
+                            <th scope="col">ESFUERZO</th>
+                            <th scope="col">NOTA</th>
+                            <th scope="col">LATIDOS</th>
+                            <th scope="col">DIAGNOSTICO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let con=0;
                             examenes.forEach(function (examen){                   
                                        if(idp==examen.IdPaciente){ %>
-                        <tr>
-                            <th scope="row">
-                                <%=con%>
-                            </th>
-                            <td>
-                                <%=examen.Fecha.substr(0,11)%>
-                            </td>
-                            <td>
-                                <%=examen.Fecha.substr(11,17)%>
-                            </td>
-                            <td>
-                                <%=examen.NivelEzfuerzo%>
-                            </td>
-                            <td>
-                                <%=examen.Nota%>
-                            </td>
-                            <td>@
-                                <%=examen.Latidos%>
-                            </td>
-                            <td>@
-                                <%=examen.Diagnostico%>
-                            </td>
-                        </tr>
-                        <% con++; }}) %>
-                </tbody>
-            </table>
+                            <tr>
+                                <th scope="row">
+                                    <%=con%>
+                                </th>
+                                <td>
+                                    <%=examen.Fecha.substr(0,11)%>
+                                </td>
+                                <td>
+                                    <%=examen.Fecha.substr(11,17)%>
+                                </td>
+                                <td>
+                                    <%=examen.NivelEzfuerzo%>
+                                </td>
+                                <td>
+                                    <%=examen.Nota%>
+                                </td>
+                                <td>@
+                                    <%=examen.Latidos%>
+                                </td>
+                                <td>@
+                                    <%=examen.Diagnostico%>
+                                </td>
+                            </tr>
+                            <% con++; }}) %>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-</body>
-<% include partials/footer %>
-
-</html>
+        <% include partials/footer %>
